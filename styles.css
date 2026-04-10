@@ -1,0 +1,450 @@
+/* Student Portal — Cascade & Selectors Lab (STARTER CSS)
+   Goal: Complete the TODOs in instructions.md.
+   Focus: Cascade (source order, specificity) + common selector types.
+
+   Important: This starter already includes minimal base styling so the page is readable.
+*/
+
+/* =========================
+   0) Base (starter)
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0b1020;
+  --text: #e9ecf3;
+  --muted: #b9c0d9;
+
+  --border: rgba(255, 255, 255, 0.14);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  --accent: #7aa2ff;
+  --featured: #ffd17a;
+  --info: #7ad7ff;
+  --danger: #ff7a9b;
+
+  --radius: 14px;
+  --gap: 16px;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(80% 60% at 20% 0%, #1b2a55 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+a {
+  color: inherit;
+}
+
+/* Utility (screen-reader-only) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================
+   1) Layout (starter)
+========================= */
+.site-header {
+  padding: 18px 18px 10px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.brand {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.site-title {
+  font-size: 1.6rem;
+  letter-spacing: 0.3px;
+}
+.site-subtitle {
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.layout {
+  max-width: 1100px;
+  margin: 18px auto 60px;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   2) Panels + lists (starter)
+========================= */
+.panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+
+.panel_title {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+
+input[type="search"]{
+  padding: 10px 8px;
+  width: 100%;
+  background-color: #373b4b;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* TODO (Sibling selectors)*/
+.filter-list+p{
+  margin-top: 10px;
+  color:#b9c0d9;
+}
+.filter-list~p{
+  margin-top: 10px;
+}
+.filter-list~p.note{
+  border-left: 3px solid #373b4b;
+  padding-left: 8px;
+}
+
+/* =========================
+   3) Nav (TODO-heavy section)
+========================= */
+.portal-nav {
+  max-width: 1100px;
+  margin: 14px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* TODO (Descendant selector):  */
+.portal-nav a{
+  padding: 10px 8px;
+  border: 1px solid #2d3a60 ;
+  border-radius: 24px;
+  text-decoration: none;
+}
+
+/* TODO (Child selector):  */
+.portal-nav>a{
+  background-color:  rgba(145, 163, 176, 0.2);
+}
+
+/* TODO (Attribute selector):  */
+.portal-nav a[target="_blank"]{
+  border-color: #7aa2ff;
+}
+
+/* TODO (Pseudo-class):  */
+.portal-nav a:hover{
+  background-color: rgba(218, 222, 225, 0.2);
+}
+
+/* =========================
+   4) Buttons + inputs (partial starter)
+========================= */
+.btn {
+  font: inherit;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn--chip {
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+}
+
+/* TODO (Pseudo-class):  */
+.btn:hover{
+  background-color: rgba(225, 225, 225,0.07);
+}
+
+/* TODO (Pseudo-class): focus styles using :focus-visible for .btn, a, and .input */
+
+.btn:focus-visible,
+.input:focus-visible,
+a:focus-visible{
+  outline: 1px solid #b9c0d9;
+  outline-offset: 2px;
+}
+
+/* TODO (Specificity demo)
+   Write two rules that conflict on border-radius:
+   1) button { border-radius: ... }   (low specificity)
+   2) .btn { border-radius: ... }     (higher specificity)
+   Observe which wins for <button class="btn">.
+*/
+ button{
+  border-radius: 6px;
+ }
+
+ .btn{
+  border-radius: 10px;
+ }
+/* TODO (Attribute selector):  */
+
+
+.help {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* =========================
+   5) Sections + cards (starter)
+========================= */
+.section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.section + .section {
+  margin-top: 18px;
+}
+
+.section_header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.section_meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+h2+ .section_meta{
+  font-style: italic;
+}
+/* TODO (Adjacent sibling):  */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+@media (max-width: 700px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+/* TODO (Source order demo)
+   Add a second .card { ... } rule later in the file that overrides one property from above.
+   Example: override border-color or background. Confirm “later wins” when specificity is same.
+*/
+
+/* TODO (Descendant selector):  */
+
+/* TODO (Child selector):  */
+
+/* TODO (Pseudo-class): card highlight on hover AND focus-within:
+   
+*/
+.card:hover{
+  transform: translateY(-2px);
+  background-color: #2d3a602e;
+  border-color: #7aa2ff;
+}
+
+.card_header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.card_title {
+  font-size: 1.05rem;
+}
+.card_text {
+  color: rgba(233, 236, 243, 0.92);
+  margin-bottom: 12px;
+}
+
+.card_meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tag {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 4px 10px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.card_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* TODO (Class variants): .btn--primary and .btn--ghost */
+
+/* TODO (Attribute selectors on cards):
+   1) .card[data-status="new"] { ... }
+   2) .card[data-priority="high"] { ... }
+*/
+.card[data-status="new"]{
+  box-shadow: 0px 0px 2px #b9c0d9 inset;
+}
+
+.card[data-priority="high"]{
+  border-left: 4px solid #ff7a9b;
+}
+.featured{
+  border-left: 4px solid #ffd17a;
+}
+#urgent1{
+  border-color: #fc7799;
+}
+/* TODO (Class modifier):  */
+
+/* TODO (ID selector):  */
+
+/* TODO (Pseudo-class): .card:nth-child(2) { ... } */
+
+/* =========================
+   6) Badges (starter)
+========================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.85rem;
+}
+.card .badge{
+  margin-right: 10px;
+}
+.card_header >.badge{
+  padding: 4px 10px;
+}
+/* TODO (Pseudo-element): .badge::before { content: ... } */
+
+/* TODO (Badge variants): .badge--featured, .badge--urgent, .badge--info */
+
+/* =========================
+   7) Deadlines list (starter)
+========================= */
+.deadline-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.deadline {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* TODO (Attribute selector): .deadline[data-priority="high"] { ... } */
+
+/* TODO (Pseudo-class): .deadline:not([data-priority="high"]) { ... } */
+
+/* TODO (Child selector):  */
+
+/* =========================
+   8) Callout + footer (starter)
+========================= */
+.callout {
+  border: 1px solid rgba(122, 162, 255, 0.35);
+  background: rgba(122, 162, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 18px;
+  color: var(--muted);
+}
+
+.fineprint {
+  max-width: 1100px;
+  margin: 0 auto;
+}

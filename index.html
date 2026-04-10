@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal — Announcements</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body class="portal" data-layout="normal">
+    <header class="site-header" id="top">
+      <div class="brand">
+        <h1 class="site-title">Student Portal</h1>
+        <p class="site-subtitle">Announcements, deadlines, and support</p>
+      </div>
+
+      <nav class="portal-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="#announcements">Announcements</a>
+        <a class="nav-link" href="#deadlines">Deadlines</a>
+
+        <!-- nested link (descendant will match; child selector won't) -->
+        <span class="nav-group">
+          <a class="nav-link" href="#support">Support</a>
+        </span>
+
+        <!-- attribute selector target (target="_blank") -->
+        <a
+          class="nav-link nav-link--external"
+          href="https://example.com"
+          target="_blank"
+          rel="noopener"
+        >
+          Course site
+        </a>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar" aria-label="Sidebar">
+        <section class="panel panel--filters" id="filters">
+          <h2 class="panel_title">Filters</h2>
+
+          <ul class="filter-list" aria-label="Announcement filters">
+            <li>
+              <button
+                class="btn btn--chip is-active"
+                type="button"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                All
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn--chip"
+                type="button"
+                data-filter="featured"
+                aria-pressed="false"
+              >
+                Featured
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn--chip"
+                type="button"
+                data-filter="urgent"
+                aria-pressed="false"
+              >
+                Urgent
+              </button>
+            </li>
+          </ul>
+
+          <!-- sibling selector targets -->
+          <p class="hint">
+            Tip: Use Tab to navigate. Hover or focus a card to highlight it.
+          </p>
+          <p class="note">
+            Note: This paragraph exists to demonstrate general sibling
+            selectors.
+          </p>
+
+          <label class="toggle">
+            <input id="compactToggle" type="checkbox" />
+            Compact view
+          </label>
+        </section>
+
+        <section class="panel panel--search">
+          <h2 class="panel_title">Quick search</h2>
+          <label class="sr-only" for="q">Search announcements</label>
+          <input
+            id="q"
+            class="input"
+            type="search"
+            placeholder="Search…"
+            autocomplete="off"
+          />
+          <small class="help"
+            >Search is UI-only (no server / no database).</small
+          >
+        </section>
+      </aside>
+
+      <section class="content">
+        <section
+          id="announcements"
+          class="section"
+          aria-label="Announcements section"
+        >
+          <header class="section_header">
+            <h2>Announcements</h2>
+            <p class="section_meta">
+              Updated: <time datetime="2026-03-02">Mar 2, 2026</time>
+            </p>
+          </header>
+
+          <div class="card-grid" role="list">
+            <article
+              class="card"
+              role="listitem"
+              data-priority="normal"
+              data-status="new"
+            >
+              <header class="card_header">
+                <span class="badge">New</span>
+                <h3 class="card_title">Online lab starter pack shared</h3>
+              </header>
+
+              <p class="card_text">
+                Download the starter ZIP from the LMS/WhatsApp group. Keep all
+                work inside your “Web Development Projects” folder.
+              </p>
+
+              <div class="card_meta">
+                <span class="tag">Lab</span>
+                <span class="tag">Week 3</span>
+              </div>
+
+              <div class="card_actions">
+                <a class="btn btn--primary" href="#deadlines">View deadlines</a>
+                <a
+                  class="btn btn--ghost"
+                  href="https://example.com"
+                  target="_blank"
+                  rel="noopener"
+                  >Open resource</a
+                >
+              </div>
+            </article>
+
+            <article
+              class="card featured"
+              role="listitem"
+              data-priority="medium"
+              data-status="read"
+            >
+              <header class="card_header">
+                <span class="badge badge--featured">Featured</span>
+                <h3 class="card_title">Project idea form is live</h3>
+              </header>
+
+              <p class="card_text">
+                Submit one realistic semester project idea per group. Pick a
+                domain, propose the tech stack, and keep the scope achievable.
+              </p>
+
+              <div class="card_meta">
+                <span class="tag">Projects</span>
+                <span class="tag">Form</span>
+              </div>
+
+              <div class="card_actions">
+                <a class="btn btn--primary" href="#support">Need help?</a>
+                <a class="btn btn--ghost" href="#filters">Filters</a>
+              </div>
+            </article>
+
+            <article
+              class="card urgent"
+              id="urgent1"
+              role="listitem"
+              data-priority="high"
+              data-status="new"
+            >
+              <header class="card_header">
+                <span class="badge badge--urgent">Urgent</span>
+                <h3 class="card_title">Quiz window closes tonight</h3>
+              </header>
+
+              <p class="card_text">
+                Attempt the quiz before the deadline. Check instructions
+                carefully and submit on time.
+              </p>
+
+              <div class="card_meta">
+                <span class="tag">Quiz</span>
+                <span class="tag">Deadline</span>
+              </div>
+
+              <div class="card_actions">
+                <button class="btn btn--primary" type="button" id="helpBtn">
+                  Show help tips
+                </button>
+                <a class="btn btn--ghost" href="#deadlines">See date</a>
+              </div>
+            </article>
+
+            <article
+              class="card"
+              role="listitem"
+              data-priority="normal"
+              data-status="read"
+            >
+              <header class="card_header">
+                <span class="badge badge--info">Info</span>
+                <h3 class="card_title">Bring your laptop (if possible)</h3>
+              </header>
+
+              <p class="card_text">
+                For in-class practice, try to bring a laptop with VS Code
+                installed. If not, pair with a classmate.
+              </p>
+
+              <div class="card_meta">
+                <span class="tag">Class</span>
+                <span class="tag">Tools</span>
+              </div>
+
+              <div class="card_actions">
+                <a class="btn btn--primary" href="#top">Back to top</a>
+                <a
+                  class="btn btn--ghost"
+                  href="https://example.com"
+                  target="_blank"
+                  rel="noopener"
+                  >VS Code</a
+                >
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="deadlines" class="section" aria-label="Deadlines section">
+          <header class="section_header">
+            <h2>Deadlines</h2>
+            <p class="section_meta">
+              These are sample dates for the demo page.
+            </p>
+          </header>
+
+          <ol class="deadline-list">
+            <li class="deadline" data-priority="high">
+              <span class="badge badge--urgent">Due</span>
+              <span>Project idea submission</span>
+              <time datetime="2026-03-05">Mar 5</time>
+            </li>
+
+            <li class="deadline" data-priority="medium">
+              <span class="badge badge--featured">Soon</span>
+              <span>CSS lab practice upload</span>
+              <time datetime="2026-03-07">Mar 7</time>
+            </li>
+
+            <li class="deadline" data-priority="normal">
+              <span class="badge badge--info">Next</span>
+              <span>Reading quiz (HTML forms)</span>
+              <time datetime="2026-03-10">Mar 10</time>
+            </li>
+          </ol>
+        </section>
+
+        <section id="support" class="section" aria-label="Support section">
+          <header class="section_header">
+            <h2>Support</h2>
+            <p class="section_meta">Use the help panel for quick reminders.</p>
+          </header>
+
+          <div class="callout" id="helpPanel" hidden>
+            <h3 class="callout_title">Help tips</h3>
+            <ul class="callout_list">
+              <li>Use DevTools → Inspect to see which CSS rule is winning.</li>
+              <li>
+                Broken styles usually mean: wrong selector, wrong specificity,
+                or wrong source order.
+              </li>
+              <li>
+                For links: keyboard focus should be visible (use
+                <code>:focus-visible</code>).
+              </li>
+            </ul>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="footer">
+      <p class="fineprint">
+        © Student Portal Demo.
+        <a class="nav-link" href="#top">Back to top</a>
+      </p>
+    </footer>
+
+    <!-- NOTE: JS is optional for this lab. You can keep it or remove it. -->
+    <script src="./app.js"></script>
+  </body>
+</html>
